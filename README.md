@@ -17,7 +17,6 @@
     - Language Support for Java(TM) by Red Hat
     - Install the Java Extension Pack
     - Maven for Java
-    - Spring Boot Tools
     - Spring Initializr Java Support
   
 
