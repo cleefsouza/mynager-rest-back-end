@@ -13,6 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.data.annotation.CreatedDate;
+
 @Entity
 @Table(name = "tb_item")
 public class Item {
@@ -24,7 +26,6 @@ public class Item {
 	@NotBlank
 	private String name;
 
-	@NotBlank
 	@OneToOne
 	private Type type;
 	
@@ -36,13 +37,13 @@ public class Item {
 	@Column(name = "current_episode")
 	private int currentEpisode;
 
-	@NotBlank
 	@OneToOne
 	private Situation situation;
 	
-	@Column(name = "date_update", nullable = false, updatable = false)
+	@Column(name = "date_update", nullable = false, updatable = true)
 	@Temporal(TemporalType.DATE)
-	private Date dateUpdate;
+	@CreatedDate
+	private Date dateUpdate = new Date();
 
 	// getters and setters
 

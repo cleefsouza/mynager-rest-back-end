@@ -7,7 +7,9 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,11 +18,24 @@ import com.cleef.rest.app.model.Item;
 import com.cleef.rest.app.repository.ItemRepository;
 
 @RestController
-@RequestMapping(value = "/app", produces = "application/json")
+@RequestMapping(value = "/items", produces = "application/json")
 public class ItemController {
 
 	@Autowired
 	private ItemRepository itRepository;
+
+	/*
+	 * methods
+	 */
+
+	@GetMapping("/{id}")
+	public Item getItemById(@PathVariable("id") long id) {
+		return itRepository.findById(id);
+	}
+
+	/*
+	 * crud
+	 */
 
 	@GetMapping()
 	public List<Item> getAllItems() {
@@ -29,6 +44,11 @@ public class ItemController {
 
 	@PostMapping()
 	public Item createItem(@Valid @RequestBody Item item) {
+		return itRepository.save(item);
+	}
+
+	@PutMapping()
+	public Item updateItem(@Valid @RequestBody Item item) {
 		return itRepository.save(item);
 	}
 
