@@ -32,6 +32,17 @@ public class ItemController {
 	public Item getItemById(@PathVariable("id") long id) {
 		return itRepository.findById(id);
 	}
+	
+	@GetMapping("/type/{id}")
+	public List<Item> getItemsByType(@PathVariable("id") Long id) {
+		return itRepository.findByType(id);
+	}
+	
+	@GetMapping("/situation/{id}")
+	public List<Item> getItemsBySituation(@PathVariable("id") Long id) {
+		return itRepository.findBySituation(id);
+	}
+	
 
 	/*
 	 * crud
