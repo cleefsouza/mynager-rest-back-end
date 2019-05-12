@@ -1,4 +1,4 @@
-# mynager
+# Mynager
 **API RESTful** with Java and Spring Boot
 
 #### Description
