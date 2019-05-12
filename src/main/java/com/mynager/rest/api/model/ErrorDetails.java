@@ -1,4 +1,4 @@
-package com.cleef.rest.app.model;
+package com.mynager.rest.api.model;
 
 import java.io.Serializable;
 

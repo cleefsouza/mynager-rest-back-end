@@ -1,4 +1,4 @@
-package com.cleef.rest.app.model;
+package com.mynager.rest.api.model;
 
 import java.util.Date;
 
@@ -21,7 +21,7 @@ public class Item {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private long id;
 
 	@NotBlank
 	private String name;
@@ -29,17 +29,21 @@ public class Item {
 	@OneToOne
 	private Type type;
 	
-	private int season;
-	
+	@Column(name = "current_season")
+	private int currentSeason;
+
+	@Column(name = "number_seasons")
+	private int numberSeasons;
+
 	@Column(name = "number_episodes")
 	private int numberEpisodes;
-	
+
 	@Column(name = "current_episode")
 	private int currentEpisode;
 
 	@OneToOne
 	private Situation situation;
-	
+
 	@Column(name = "date_update", nullable = false, updatable = true)
 	@Temporal(TemporalType.DATE)
 	@CreatedDate
@@ -47,11 +51,11 @@ public class Item {
 
 	// getters and setters
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -71,12 +75,20 @@ public class Item {
 		this.type = type;
 	}
 
-	public int getSeason() {
-		return season;
+	public int getCurrentSeason() {
+		return currentSeason;
 	}
 
-	public void setSeason(int season) {
-		this.season = season;
+	public void setSeason(int currentSeason) {
+		this.currentSeason = currentSeason;
+	}
+
+	public int getNumberSeasons() {
+		return numberSeasons;
+	}
+
+	public void setNumberSeasons(int numberSeasons) {
+		this.numberSeasons = numberSeasons;
 	}
 
 	public int getNumberEpisodes() {

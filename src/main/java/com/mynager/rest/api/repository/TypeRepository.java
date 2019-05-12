@@ -1,8 +1,8 @@
-package com.cleef.rest.app.repository;
+package com.mynager.rest.api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cleef.rest.app.model.Type;
+import com.mynager.rest.api.model.Type;
 
 public interface TypeRepository extends JpaRepository<Type, Long>{
 

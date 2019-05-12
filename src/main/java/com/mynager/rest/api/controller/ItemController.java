@@ -1,4 +1,4 @@
-package com.cleef.rest.app.controller;
+package com.mynager.rest.api.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cleef.rest.app.model.Item;
-import com.cleef.rest.app.repository.ItemRepository;
+import com.mynager.rest.api.model.Item;
+import com.mynager.rest.api.repository.ItemRepository;
 
 @RestController
 @RequestMapping(value = "/items", produces = "application/json")
