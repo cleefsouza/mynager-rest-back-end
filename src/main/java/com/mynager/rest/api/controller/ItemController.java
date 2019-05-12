@@ -53,17 +53,17 @@ public class ItemController {
 		return itRepository.findAll();
 	}
 
-	@PostMapping()
+	@PostMapping("/create")
 	public Item createItem(@Valid @RequestBody Item item) {
 		return itRepository.save(item);
 	}
 
-	@PutMapping()
+	@PutMapping("/update")
 	public Item updateItem(@Valid @RequestBody Item item) {
 		return itRepository.save(item);
 	}
 
-	@DeleteMapping()
+	@DeleteMapping("/delete")
 	public void deleteItem(@RequestBody Item item) {
 		itRepository.delete(item);
 	}
