@@ -21,20 +21,13 @@
 > File: [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
 
 #### Links
-- Get Method
-	- List all items: [www.example.com/items]()
-	- Find by id: [www.example.com/items/?]()
-	- Find by type: [www.example.com/items/type/?]()
-	- Find by situation: [www.example.com/items/situation/?]()
-	<br/>
-- Post Method
-	- Create item: [www.example.com/items/create]()
-	<br/>
-- Put Method
-	- Update item: [www.example.com/items/update]()
-	<br/>
-- Delete Method
-	- Delete item: [www.example.com/items/delete]()
+- List all items: [/items]()
+- Find by id: [/items/?]()
+- Find by type: [/items/type/?]()
+- Find by situation: [/items/situation/?]()
+- Create item: [/items/create]()
+- Update item: [/items/update]()
+- Delete item: [/items/delete]()
 
 #### Class Diagram
 Out of date
