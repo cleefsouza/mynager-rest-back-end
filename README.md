@@ -31,4 +31,4 @@
 
 #### Class Diagram
 Out of date
-<img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png"/ style="width: 500px;">
+<img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png/" style="width: 250px;">
