@@ -1,4 +1,4 @@
---
+﻿--
 -- PostgreSQL database dump
 --
 
@@ -112,15 +112,14 @@ SELECT pg_catalog.setval('hibernate_sequence', 16, true);
 -- Data for Name: tb_item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation, type) FROM stdin;
-8	18	1	2019-05-12	Tate no Yuusha no Nariagari	18	1	2	1
-11	18	2	2019-05-12	Teste Sama Sensei	18	5	2	1
-12	18	2	2019-05-12	Teste Sama Sensei	18	5	2	1
-13	18	2	2019-05-12	Teste Sama Sensei	18	5	3	2
-15	18	2	2019-05-12	Teste Sama Sensei	18	5	3	2
-16	18	2	2019-05-12	Teste Sama Sensei	18	5	4	2
-14	18	2	2019-05-12	Teste Sama Sensei	18	5	4	2
-\.
+INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation, type) VALUES 
+(8,	18,	1,	'2019-05-12',	'Tate no Yuusha no Nariagari',	18,	1,	2,	1),
+(11,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	2,	1),
+(12,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	2,	1),
+(13,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	3,	2),
+(15,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	3,	2),
+(16,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	4,	2),
+(14,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	4,	2);
 
 
 --
@@ -129,13 +128,12 @@ COPY tb_item (id, current_episode, current_season, date_update, name, number_epi
 -- Data for Name: tb_situation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tb_situation (id, name) FROM stdin;
-1	Completed
-2	Watching
-3	Hiatus
-4	Whislist
-5	Stopped
-\.
+INSERT INTO tb_situation (id, name) VALUES
+(1,	'Completed'),
+(2,	'Watching'),
+(3,	'Hiatus'),
+(4,	'Whislist'),
+(5,	'Stopped');
 
 
 --
@@ -144,10 +142,9 @@ COPY tb_situation (id, name) FROM stdin;
 -- Data for Name: tb_type; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY tb_type (id, name) FROM stdin;
-1	Anime
-2	Serie
-\.
+INSERT INTO tb_type (id, name) VALUES
+(1,	'Anime'),
+(2,	'Serie');
 
 
 --
