@@ -25,10 +25,10 @@
 - Find by id: [/items/?]()
 - Find by type: [/items/type/?]()
 - Find by situation: [/items/situation/?]()
-- Create item: [/items/create]()
-- Update item: [/items/update]()
-- Delete item: [/items/delete]()
+- Create item: [/items/new]()
+- Update item: [/items/upd]()
+- Delete item: [/items/del]()
 
 #### Class Diagram
 Out of date
-<img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/mynager_api_class_diagram.png"/>
+<img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png"/>
