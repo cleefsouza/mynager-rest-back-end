@@ -1,18 +1,26 @@
-package com.mynager.rest.api.repository;
+package com.mynager.rest.api.services;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.mynager.rest.api.model.Item;
 
-public interface ItemRepository extends JpaRepository<Item, Long> {
+public interface ItemService {
 
 	// retrieve item by id
 	Item findById(long id);
-	
+
 	// list items by type
 	List<Item> findByType(Long id);
 
 	// list items by situation
 	List<Item> findBySituation(Long id);
+
+	// save item
+	Item save(Item item);
+
+	// retrive all items
+	List<Item> findAll();
+	
+	// delete item
+	void delete(Item item);
 }

@@ -20,9 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/").permitAll()
 				.antMatchers(HttpMethod.GET, "/items", "/items/{id}", "/items/type/{id}", "/items/situation/{id}").hasRole("USER")
-				.antMatchers(HttpMethod.POST, "/items/create").hasRole("USER")
-				.antMatchers(HttpMethod.PUT, "/items/update").hasRole("USER")
-				.antMatchers(HttpMethod.DELETE, "/items/delete").hasRole("USER")
+				.antMatchers(HttpMethod.POST, "/items/new").hasRole("USER")
+				.antMatchers(HttpMethod.PUT, "/items/upd").hasRole("USER")
+				.antMatchers(HttpMethod.DELETE, "/items/del").hasRole("USER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/bootstrap/**", "/style/**", "/js/**");
+		web.ignoring().antMatchers("/bootstrap/**", "/style/**", "/js/**", "/**","/items/**","/items/new", "/items/upd", "/items/del", "/items/{id}", "/items/type/{id}", "/items/situation/{id}");
 	}
 
 	@Bean
