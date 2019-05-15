@@ -8,6 +8,9 @@ public interface ItemService {
 
 	// retrieve item by id
 	Item findById(long id);
+	
+	// update item
+	Item update(Item item);
 
 	// list items by type
 	List<Item> findByType(Long id);

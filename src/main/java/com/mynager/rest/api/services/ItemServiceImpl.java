@@ -2,25 +2,32 @@ package com.mynager.rest.api.services;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mynager.rest.api.controller.exception.NotFoundException;
 import com.mynager.rest.api.model.Item;
 import com.mynager.rest.api.repository.ItemRepository;
 
 @Service
-public class ItemServiceImpl implements ItemService{
-	
+public class ItemServiceImpl implements ItemService {
+
 	@Autowired
 	private ItemRepository itRepository;
-	
+
 	@Override
-	public Item findById(long id) {		
-		return itRepository.findById(id);
+	public Item findById(long id) {
+		Item item = itRepository.findById(id);
+		if (item == null) {
+			throw new NotFoundException("Ops! Item not found.");
+		}
+		return item;
 	}
 
 	@Override
-	public List<Item> findByType(Long id) {		
+	public List<Item> findByType(Long id) {
 		return itRepository.findByType(id);
 	}
 
@@ -40,8 +47,13 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public void delete(Item item) {		
+	public void delete(Item item) {
 		itRepository.delete(item);
+	}
+
+	@Override
+	public Item update(Item item) {
+		return itRepository.save(item);
 	}
 
 }

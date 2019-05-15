@@ -13,8 +13,17 @@ public class ErrorDetails implements Serializable {
 	private String httpMethod;
 	private String error;
 	private String details;
+	private String path;
 
 	// getters e setters
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
 
 	public Integer getStatusCode() {
 		return statusCode;
@@ -92,6 +101,12 @@ public class ErrorDetails implements Serializable {
 		// details
 		public Builder addDetails(String details) {
 			this.errorDt.details = details;
+			return this;
+		}
+		
+		// path
+		public Builder addPath(String path) {
+			this.errorDt.path = path;
 			return this;
 		}
 		

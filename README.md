@@ -29,13 +29,13 @@
 - Find by situation: [/items/situation/?]()
 
 > POST Method
-- Create item: [/items/new]()
+- Create item: [/items]()
 
 > PUT Method
-- Update item: [/items/upd]()
+- Update item: [/items]()
 
 > DELETE Method
-- Delete item: [/items/del]()
+- Delete item: [/items]()
 
 #### Class Diagram
 <img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png/"/>

@@ -58,17 +58,17 @@ public class ItemController {
 		return itService.findAll();
 	}
 
-	@PostMapping("/new")
+	@PostMapping()
 	public Item createItem(@Valid @RequestBody Item item) {
 		return itService.save(item);
 	}
 
-	@PutMapping("/upd")
+	@PutMapping()
 	public Item updateItem(@Valid @RequestBody Item item) {
-		return itService.save(item);
+		return itService.update(item);
 	}
 
-	@DeleteMapping("/del")
+	@DeleteMapping()
 	public void deleteItem(@RequestBody Item item) {
 		itService.delete(item);
 	}
