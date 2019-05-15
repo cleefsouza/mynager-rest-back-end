@@ -113,13 +113,7 @@ SELECT pg_catalog.setval('hibernate_sequence', 16, true);
 --
 
 INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation, type) VALUES 
-(8,	18,	1,	'2019-05-12',	'Tate no Yuusha no Nariagari',	18,	1,	2,	1),
-(11,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	2,	1),
-(12,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	2,	1),
-(13,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	3,	2),
-(15,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	3,	2),
-(16,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	4,	2),
-(14,	18,	2,	'2019-05-12',	'Teste Sama Sensei',	18,	5,	4,	2);
+(8,	18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	2,	1);
 
 
 --

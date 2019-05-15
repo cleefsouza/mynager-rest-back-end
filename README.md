@@ -20,13 +20,21 @@
 #### Dump Database
 > File: [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
 
-#### Links
+#### Endpoints REST
+
+> GET Method
 - List all items: [/items]()
 - Find by id: [/items/?]()
 - Find by type: [/items/type/?]()
 - Find by situation: [/items/situation/?]()
+
+> POST Method
 - Create item: [/items/new]()
+
+> PUT Method
 - Update item: [/items/upd]()
+
+> DELETE Method
 - Delete item: [/items/del]()
 
 #### Class Diagram
