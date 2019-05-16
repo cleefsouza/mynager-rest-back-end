@@ -53,17 +53,17 @@ public class ItemController {
 	}
 
 	@PostMapping()
-	public void createItem(@Valid @RequestBody Item item) {
+	public void save(@Valid @RequestBody Item item) {
 		itService.save(item);
 	}
 
 	@PutMapping()
-	public void updateItem(@Valid @RequestBody Item item) {
+	public void update(@Valid @RequestBody Item item) {
 		itService.update(item);
 	}
 
 	@DeleteMapping()
-	public void deleteItem(@RequestBody Item item) {
+	public void delete(@RequestBody Item item) {
 		itService.delete(item);
 	}
 }

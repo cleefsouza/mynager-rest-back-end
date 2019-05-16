@@ -33,12 +33,6 @@ public class UserController {
 		return usService.findById(id);
 	}
 	
-	
-	@GetMapping("/login")
-	public String getLogin() {
-		return "login";
-	}
-
 	/*
 	 * crud
 	 */
