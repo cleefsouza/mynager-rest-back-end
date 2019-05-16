@@ -1,7 +1,6 @@
 package com.mynager.rest.api.model;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -48,10 +46,7 @@ public class User{
 	@CreatedDate
 	private Date dateCreate = new Date();
 	
-	@OneToMany(mappedBy = "user")
-	private List<Item> items;
-	
-	@ManyToMany
+    @ManyToMany
 	private Set<Role> roles;
 
 	// getters e setters
@@ -103,15 +98,7 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
+	
 	public Date getDateCreate() {
 		return dateCreate;
 	}

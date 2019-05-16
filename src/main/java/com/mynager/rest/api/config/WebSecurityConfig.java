@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String[] PUBLIC_MATCHERS = { "/items", "/items/{id}", "/items/type/{id}",
 			"/items/situation/{id}", "/user", "user/{id}"};
 
-	private static final String[] ADMIN_MATCHERS = { "/user","/user/**", "/items", "/items/**"};
+	private static final String[] ADMIN_MATCHERS = { "/user","/user/**", "/items", "/items/**/", };
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.headers().frameOptions().disable();		
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/").permitAll()
 			
@@ -49,12 +47,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 	
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(usDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(usDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
 }

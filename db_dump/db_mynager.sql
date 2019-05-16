@@ -5,8 +5,8 @@
 --
 
 INSERT INTO tb_role (id, name) VALUES
-(1, 'USER'),
-(2, 'ADMIN');
+(1, 'ROLE_USER'),
+(2, 'ROLE_ADMIN');
 
 --
 -- TOC entry 2033 (class 0 OID 16685)
