@@ -41,13 +41,7 @@ public class ItemController {
 	@GetMapping("/situation/{id}")
 	public List<Item> getItemsBySituation(@PathVariable("id") Long id) {
 		return itService.findBySituation(id);
-	}
-	
-	@GetMapping("/login")
-	public String getLogin() {
-		return "login";
-	}
-	
+	}	
 
 	/*
 	 * crud
@@ -59,13 +53,13 @@ public class ItemController {
 	}
 
 	@PostMapping()
-	public Item createItem(@Valid @RequestBody Item item) {
-		return itService.save(item);
+	public void createItem(@Valid @RequestBody Item item) {
+		itService.save(item);
 	}
 
 	@PutMapping()
-	public Item updateItem(@Valid @RequestBody Item item) {
-		return itService.update(item);
+	public void updateItem(@Valid @RequestBody Item item) {
+		itService.update(item);
 	}
 
 	@DeleteMapping()

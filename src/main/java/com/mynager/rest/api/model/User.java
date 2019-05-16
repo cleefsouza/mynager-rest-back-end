@@ -1,14 +1,23 @@
 package com.mynager.rest.api.model;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "tb_user")
@@ -18,31 +27,34 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotBlank
+	@NotEmpty
 	@Column
 	private String username;
 
-	@NotBlank
+	@NotEmpty
 	@Column
 	private String password;
 
-	@NotBlank
+	@NotEmpty
 	@Column
 	private String name;
+
+	@Email
+	@Column
+	private String email;
 	
-	@Column(nullable = true)
-	@Enumerated(EnumType.STRING)
-	private Role role;
+	@Column(name = "date_create", nullable = false, updatable = false)
+	@Temporal(TemporalType.DATE)
+	@CreatedDate
+	private Date dateCreate = new Date();
+	
+	@OneToMany(mappedBy = "user")
+	private List<Item> items;
+	
+	@ManyToMany
+	private Set<Role> roles;
 
 	// getters e setters
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
 	public Long getId() {
 		return id;
@@ -50,6 +62,14 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public String getUsername() {
@@ -76,28 +96,27 @@ public class User {
 		this.name = name;
 	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        if (id == null) {
-            if (other.id != null)
-                return false;
-        } else if (!id.equals(other.id))
-            return false;
-        return true;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
+	public Date getDateCreate() {
+		return dateCreate;
+	}
+
+	public void setDateCreate(Date dateCreate) {
+		this.dateCreate = dateCreate;
+	}
 }

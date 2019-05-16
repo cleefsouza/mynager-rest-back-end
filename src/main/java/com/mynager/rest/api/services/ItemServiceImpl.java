@@ -2,8 +2,6 @@ package com.mynager.rest.api.services;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,8 +35,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public Item save(Item item) {
-		return itRepository.save(item);
+	public void save(Item item) {
+		itRepository.save(item);
 	}
 
 	@Override
@@ -52,8 +50,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public Item update(Item item) {
-		return itRepository.save(item);
+	public void update(Item item) {
+		itRepository.save(item);
 	}
 
 }

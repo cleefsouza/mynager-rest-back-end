@@ -10,7 +10,7 @@ public interface ItemService {
 	Item findById(long id);
 	
 	// update item
-	Item update(Item item);
+	void update(Item item);
 
 	// list items by type
 	List<Item> findByType(Long id);
@@ -19,7 +19,7 @@ public interface ItemService {
 	List<Item> findBySituation(Long id);
 
 	// save item
-	Item save(Item item);
+	void save(Item item);
 
 	// retrive all items
 	List<Item> findAll();

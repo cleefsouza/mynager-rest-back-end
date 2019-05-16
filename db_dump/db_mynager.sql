@@ -98,12 +98,42 @@ CREATE TABLE tb_type (
 ALTER TABLE tb_type OWNER TO postgres;
 
 --
--- TOC entry 2018 (class 0 OID 0)
+-- TOC entry 177 (class 1259 OID 16685)
+-- Name: tb_user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_user (
+    id bigint NOT NULL,
+    email character varying(255),
+    name character varying(255),
+    password character varying(255),
+    username character varying(255),
+    date_create date NOT NULL
+);
+
+
+ALTER TABLE tb_user OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 16693)
+-- Name: tb_user_roles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE tb_user_roles (
+    users bigint NOT NULL,
+    roles bigint NOT NULL
+);
+
+
+ALTER TABLE tb_user_roles OWNER TO postgres;
+
+--
+-- TOC entry 2043 (class 0 OID 0)
 -- Dependencies: 172
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hibernate_sequence', 16, true);
+SELECT pg_catalog.setval('hibernate_sequence', 1, false);
 
 
 --
@@ -112,7 +142,7 @@ SELECT pg_catalog.setval('hibernate_sequence', 16, true);
 -- Data for Name: tb_item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation, type) VALUES 
+INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation_id, type_id, user_id) VALUES 
 (8,	18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	2,	1);
 
 
@@ -140,6 +170,34 @@ INSERT INTO tb_type (id, name) VALUES
 (1,	'Anime'),
 (2,	'Serie');
 
+
+--
+-- TOC entry 2030 (class 0 OID 16670)
+-- Dependencies: 174
+-- Data for Name: tb_role; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO tb_role (id, name) VALUES
+(1, 'USER'),
+(2, 'ADMIN');
+
+--
+-- TOC entry 2033 (class 0 OID 16685)
+-- Dependencies: 177
+-- Data for Name: tb_user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO tb_user (id, email, name, password, username, date_create) VALUES
+(1,	'testando.api.restful@gmail.com',	'Testando Api Restful',	'$2a$10$ImVkLighf2MYcfuS/5rvve3MRBf3/kEq3Ys8wB9r7ym043VyvUsAi',	'testandoapi',	'2019-05-16');
+
+--
+-- TOC entry 2034 (class 0 OID 16693)
+-- Dependencies: 178
+-- Data for Name: tb_user_roles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO tb_user_roles (users, roles) VALUES
+(1,	2);
 
 --
 -- TOC entry 1890 (class 2606 OID 16425)
@@ -185,7 +243,59 @@ ALTER TABLE ONLY tb_item
 ALTER TABLE ONLY tb_item
     ADD CONSTRAINT fkivx4tka01xqu5x07ej51dyeqi FOREIGN KEY (type) REFERENCES tb_type(id);
 
+--
+-- TOC entry 1905 (class 2606 OID 16674)
+-- Name: tb_role_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
 
+ALTER TABLE ONLY tb_role
+    ADD CONSTRAINT tb_role_pkey PRIMARY KEY (id);
+
+--
+-- TOC entry 1911 (class 2606 OID 16692)
+-- Name: tb_user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_user
+    ADD CONSTRAINT tb_user_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1913 (class 2606 OID 16697)
+-- Name: tb_user_roles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY tb_user_roles
+    ADD CONSTRAINT tb_user_roles_pkey PRIMARY KEY (users, roles);
+
+
+--
+-- TOC entry 1916 (class 2606 OID 16708)
+-- Name: fk9fq74891dmhwhj8goabu4p2wh; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_item
+    ADD CONSTRAINT fk9fq74891dmhwhj8goabu4p2wh FOREIGN KEY (user_id) REFERENCES tb_user(id);
+
+
+--
+-- TOC entry 1918 (class 2606 OID 16718)
+-- Name: fkcfghm2ojxq8fhbp1if6c5rn2r; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_user_roles
+    ADD CONSTRAINT fkcfghm2ojxq8fhbp1if6c5rn2r FOREIGN KEY (users) REFERENCES tb_user(id);
+
+
+--
+-- TOC entry 1917 (class 2606 OID 16713)
+-- Name: fkfw9jaetrjr0h46mafctrkxowx; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY tb_user_roles
+    ADD CONSTRAINT fkfw9jaetrjr0h46mafctrkxowx FOREIGN KEY (roles) REFERENCES tb_role(id);
+
+    
 --
 -- TOC entry 2016 (class 0 OID 0)
 -- Dependencies: 5
@@ -203,4 +313,3 @@ GRANT ALL ON SCHEMA public TO PUBLIC;
 --
 -- PostgreSQL database dump complete
 --
-

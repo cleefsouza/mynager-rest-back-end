@@ -7,13 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.data.annotation.CreatedDate;
 
@@ -30,11 +32,8 @@ public class Item {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@NotBlank
+	@NotEmpty
 	private String name;
-
-	@OneToOne
-	private Type type;
 
 	@Column(name = "current_season")
 	private int currentSeason;
@@ -49,7 +48,16 @@ public class Item {
 	private int currentEpisode;
 
 	@OneToOne
+	@JoinColumn(name = "type_id")
+	private Type type;
+
+	@OneToOne
+	@JoinColumn(name = "situation_id")
 	private Situation situation;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	@Column(name = "date_update", nullable = false, updatable = true)
 	@Temporal(TemporalType.DATE)
@@ -128,5 +136,17 @@ public class Item {
 
 	public void setDateUpdate(Date dateUpdate) {
 		this.dateUpdate = dateUpdate;
+	}
+
+	public void setCurrentSeason(int currentSeason) {
+		this.currentSeason = currentSeason;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }
