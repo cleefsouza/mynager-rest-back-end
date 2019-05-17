@@ -18,25 +18,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService usDetailsService;
 	
-	private static final String[] PUBLIC_MATCHERS = { "/items", "/items/{id}", "/items/type/{id}",
+	private static final String[] GENERAL_MATCHERS = {"/items", "/items/{id}", "/items/type/{id}",
 			"/items/situation/{id}", "/user", "user/{id}"};
-
-	private static final String[] ADMIN_MATCHERS = { "/user","/user/**", "/items", "/items/**/", };
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/").permitAll()
 			
-			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS).hasRole("USER")
-			.antMatchers(HttpMethod.POST, "/items").hasRole("USER")
-			.antMatchers(HttpMethod.PUT, "/items", "/user").hasRole("USER")
-			.antMatchers(HttpMethod.DELETE, "/items", "/user").hasRole("USER")
+			.antMatchers(HttpMethod.GET, GENERAL_MATCHERS).hasAnyRole("USER", "ADMIN")
+			.antMatchers(HttpMethod.POST, "/items").hasAnyRole("USER", "ADMIN")
+			.antMatchers(HttpMethod.PUT, "/items", "/user").hasAnyRole("USER", "ADMIN")
+			.antMatchers(HttpMethod.DELETE, "/items", "/user").hasAnyRole("USER", "ADMIN")
 			
-			.antMatchers(HttpMethod.GET, ADMIN_MATCHERS).hasRole("ADMIN")
-			.antMatchers(HttpMethod.POST, ADMIN_MATCHERS).hasRole("ADMIN")
-			.antMatchers(HttpMethod.PUT, ADMIN_MATCHERS).hasRole("ADMIN")
-			.antMatchers(HttpMethod.DELETE, ADMIN_MATCHERS).hasRole("ADMIN")
+			.antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN")
 			.anyRequest().authenticated()
 				.and()
 			.formLogin().permitAll()
