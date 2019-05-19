@@ -14,9 +14,9 @@ INSERT INTO tb_role (id, name) VALUES
 -- Data for Name: tb_user; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tb_user (email, name, password, username, date_create) VALUES
-('testando.api.restful@gmail.com',	'Admin Testando Api Restful',	'$2a$10$ImVkLighf2MYcfuS/5rvve3MRBf3/kEq3Ys8wB9r7ym043VyvUsAi',	'admin',	'2019-05-16'),
-('testando.api.restful@gmail.com',	'User Testando Api Restful',	'$2a$10$ImVkLighf2MYcfuS/5rvve3MRBf3/kEq3Ys8wB9r7ym043VyvUsAi',	'user',	'2019-05-16');
+INSERT INTO tb_user (id, email, name, password, username, date_create) VALUES
+(1, 'testando.api.restful@gmail.com',	'Admin Testando Api Restful',	'admin',	'admin',	'2019-05-16'),
+(2, 'testando.api.restful@gmail.com',	'User Testando Api Restful',	'user',	'user',	'2019-05-16');
 
 --
 -- TOC entry 2034 (class 0 OID 16693)
@@ -58,6 +58,6 @@ INSERT INTO tb_type (id, name) VALUES
 -- Data for Name: tb_item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tb_item (current_episode, current_season, date_update, name, number_episodes, number_seasons, situation_id, type_id, user_id) VALUES 
-(18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	2,	1, 1),
-(18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	5,	2, 2);
+INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation_id, type_id, user_id) VALUES 
+(1, 18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	2,	1, 1),
+(2, 18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	5,	2, 2);
