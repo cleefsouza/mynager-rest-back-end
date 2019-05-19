@@ -18,7 +18,7 @@ import com.mynager.rest.api.model.Item;
 import com.mynager.rest.api.services.ItemService;
 
 @RestController
-@RequestMapping(value = "/items", produces = "application/json")
+@RequestMapping(value = "/item", produces = "application/json")
 public class ItemController {
 	
 	@Autowired

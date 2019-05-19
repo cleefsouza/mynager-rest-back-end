@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,10 +19,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService usDetailsService;
 	
-	private static final String[] GENERAL_MATCHERS = {"/items", "/items/{id}", "/items/type/{id}",
-			"/items/situation/{id}", "/user", "user/{id}"};
-	
+	private static final String[] GENERAL_MATCHERS = {"/item", "/item/{id}", "/item/type/{id}",
+			"/item/situation/{id}", "/user", "user/{id}"};
+
 	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers(GENERAL_MATCHERS);
+	}
+
+	// commented temporarily to test the front
+	
+	/*@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/").permitAll()
@@ -39,8 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout().permitAll()
 				.and()
 			.rememberMe();
-	}
-
+	}*/
+	
 	@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
