@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,14 +20,14 @@ import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "tb_user")
-public class User{
+@NamedQuery(name = "findByEmail", query="SELECT u FROM User u WHERE u.email = ?1")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty
-	@Column
+	@NotEmpty	
 	private String username;
 
 	@NotEmpty
@@ -38,15 +39,16 @@ public class User{
 	private String name;
 
 	@Email
-	@Column
+	@NotEmpty
+	@Column(unique = true)
 	private String email;
-	
+
 	@Column(name = "date_create", nullable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
 	@CreatedDate
 	private Date dateCreate = new Date();
-	
-    @ManyToMany
+
+	@ManyToMany
 	private Set<Role> roles;
 
 	// getters e setters
@@ -98,7 +100,7 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Date getDateCreate() {
 		return dateCreate;
 	}

@@ -5,19 +5,19 @@ import com.mynager.rest.api.model.User;
 
 public interface UserService {
 
-	// find user by username
-	User findByUsername(String username);
-	
+	// find user by email
+	User findByEmail(String email);
+
 	// find by id
 	User findById(long id);
-	
+
 	// save user
 	void save(User user);
-	
-	// delete user
-	void delete(User user);
-	
-	// retrive all user
+
+	// delete user by id
+	void delete(long id);
+
+	// find all user
 	List<User> findAll();
 	
 	// update user

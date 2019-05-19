@@ -1,6 +1,5 @@
 package com.mynager.rest.api.services;
 
-/*
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,33 +15,28 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mynager.rest.api.model.Role;
 import com.mynager.rest.api.model.User;
 import com.mynager.rest.api.repository.UserRepository;
-*/
 
-/*
- * 	OBS: commented temporarily to test the front
- */
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
 
-// @Service
-public class UserDetailsServiceImpl { // implements UserDetailsService {
-
-	/*@Autowired
+	@Autowired
 	private UserRepository usRepository;
 
 	@Override
 	@Transactional(readOnly = true)
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
-		User user = usRepository.findByUsername(username);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = usRepository.findByEmail(email);
 		if (user == null)
-			throw new UsernameNotFoundException("User "+username+" not found!");
-		
+			throw new UsernameNotFoundException("User " + email + " not found!");
+
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-		
+
 		for (Role role : user.getRoles()) {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true, true, true,
-				grantedAuthorities);
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), true,
+				true, true, true, grantedAuthorities);
 	}
-	*/
+
 }

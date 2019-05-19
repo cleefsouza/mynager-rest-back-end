@@ -3,6 +3,9 @@ package com.mynager.rest.api.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mynager.rest.api.controller.exception.NotFoundException;
@@ -36,6 +39,12 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public void save(Item item) {
+		item.setId(null);
+		itRepository.save(item);
+	}
+
+	@Override
+	public void update(Item item) {
 		itRepository.save(item);
 	}
 
@@ -45,13 +54,13 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public void delete(Item item) {
-		itRepository.delete(item);
+	public void delete(long id) {
+		itRepository.deleteById(id);
 	}
 
 	@Override
-	public void update(Item item) {
-		itRepository.save(item);
+	public Page<Item> findPage(Integer page, Integer linePerPage, String direction, String orderBy) {
+		PageRequest pageRequest = PageRequest.of(page, linePerPage, Sort.Direction.valueOf(direction), orderBy);
+		return itRepository.findAll(pageRequest);
 	}
-
 }

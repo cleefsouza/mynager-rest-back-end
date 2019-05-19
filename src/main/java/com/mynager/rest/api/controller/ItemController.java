@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mynager.rest.api.model.Item;
@@ -20,7 +22,7 @@ import com.mynager.rest.api.services.ItemService;
 @RestController
 @RequestMapping(value = "/item", produces = "application/json")
 public class ItemController {
-	
+
 	@Autowired
 	private ItemService itService;
 
@@ -29,19 +31,27 @@ public class ItemController {
 	 */
 
 	@GetMapping("/{id}")
-	public Item getItemById(@PathVariable("id") long id) {
+	public Item findItemById(@PathVariable("id") long id) {
 		return itService.findById(id);
 	}
-	
+
 	@GetMapping("/type/{id}")
 	public List<Item> getItemsByType(@PathVariable("id") Long id) {
 		return itService.findByType(id);
 	}
-	
+
 	@GetMapping("/situation/{id}")
 	public List<Item> getItemsBySituation(@PathVariable("id") Long id) {
 		return itService.findBySituation(id);
-	}	
+	}
+
+	@GetMapping("/page")
+	public Page<Item> findPage(@RequestParam(name = "page", defaultValue = "0") Integer page,
+			@RequestParam(name = "linePerPage", defaultValue = "4") Integer linePerPage,
+			@RequestParam(name = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(name = "orderBy", defaultValue = "name") String orderBy) {
+		return itService.findPage(page, linePerPage, direction, orderBy);
+	}
 
 	/*
 	 * crud
@@ -57,13 +67,14 @@ public class ItemController {
 		itService.save(item);
 	}
 
-	@PutMapping()
-	public void update(@Valid @RequestBody Item item) {
+	@PutMapping("/{id}")
+	public void update(@Valid @RequestBody Item item, @PathVariable("id") long id) {
+		item.setId(id);
 		itService.update(item);
 	}
 
-	@DeleteMapping()
-	public void delete(@RequestBody Item item) {
-		itService.delete(item);
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable("id") long id) {
+		itService.delete(id);
 	}
 }

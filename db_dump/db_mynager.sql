@@ -1,4 +1,4 @@
-﻿--
+--
 -- TOC entry 2030 (class 0 OID 16670)
 -- Dependencies: 174
 -- Data for Name: tb_role; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -15,8 +15,8 @@ INSERT INTO tb_role (id, name) VALUES
 --
 
 INSERT INTO tb_user (id, email, name, password, username, date_create) VALUES
-(1, 'testando.api.restful@gmail.com',	'Admin Testando Api Restful',	'admin',	'admin',	'2019-05-16'),
-(2, 'testando.api.restful@gmail.com',	'User Testando Api Restful',	'user',	'user',	'2019-05-16');
+(1, 'admin@gmail.com',	'Admin Testando Api Restful',	'$2a$10$DQNF6l/rZsYeIc.3IPa.VO0GcwlqVbR1Q.BjAI630JH8QCFLE5nSa',	'admin',	'2019-05-16'),
+(2, 'user@gmail.com',	'User Testando Api Restful',	'$2a$10$WveAbgaICdNeqYm8SHe9mO0M0SEkm12Z7f5L.wTbIdfSfw5idSEMC',	'user',	'2019-05-16');
 
 --
 -- TOC entry 2034 (class 0 OID 16693)

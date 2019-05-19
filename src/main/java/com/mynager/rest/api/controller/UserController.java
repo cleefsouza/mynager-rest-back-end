@@ -42,14 +42,15 @@ public class UserController {
 		usService.save(user);
 	}
 	
-	@PutMapping()
-	public void update(@Valid @RequestBody User user) {
+	@PutMapping("/{id}")
+	public void update(@Valid @RequestBody User user, @PathVariable("id") long id) {
+		user.setId(id);
 		usService.update(user);
 	}
 	
-	@DeleteMapping()
-	public void delete(User user) {
-		usService.delete(user);
+	@DeleteMapping("/{id}")
+	public void delete(@PathVariable("id") long id) {
+		usService.delete(id);
 	}
 	
 	@GetMapping()
