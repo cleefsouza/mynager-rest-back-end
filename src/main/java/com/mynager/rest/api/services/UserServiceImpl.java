@@ -4,13 +4,17 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.mynager.rest.api.controller.exception.NotFoundException;
 import com.mynager.rest.api.model.User;
 import com.mynager.rest.api.repository.RoleRepository;
 import com.mynager.rest.api.repository.UserRepository;
+
+/*
+ * 	OBS: commented temporarily to test the front
+ */
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -21,8 +25,9 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private RoleRepository roRepository;
 
-	@Autowired
+	/*@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	*/
 
 	@Override
 	public User findByUsername(String username) {
@@ -44,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>(roRepository.findAll()));
         usRepository.save(user);
     }

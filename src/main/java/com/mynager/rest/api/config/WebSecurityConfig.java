@@ -1,5 +1,6 @@
 package com.mynager.rest.api.config;
 
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,25 +12,24 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+*/
 
-@Configuration
-@EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+/*
+ * 	OBS: commented temporarily to test the front
+ */
 
+// @Configuration
+// @EnableWebSecurity
+public class WebSecurityConfig { //extends WebSecurityConfigurerAdapter {
+
+	/*
 	@Autowired
 	private UserDetailsService usDetailsService;
 	
 	private static final String[] GENERAL_MATCHERS = {"/item", "/item/{id}", "/item/type/{id}",
 			"/item/situation/{id}", "/user", "user/{id}"};
-
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers(GENERAL_MATCHERS);
-	}
-
-	// commented temporarily to test the front
 	
-	/*@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers(HttpMethod.GET, "/").permitAll()
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.logout().permitAll()
 				.and()
 			.rememberMe();
-	}*/
+	}
 	
 	@Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -58,4 +58,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(usDetailsService).passwordEncoder(bCryptPasswordEncoder());
 	}
+	*/
 }

@@ -1,5 +1,6 @@
 package com.mynager.rest.api.services;
 
+/*
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,11 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mynager.rest.api.model.Role;
 import com.mynager.rest.api.model.User;
 import com.mynager.rest.api.repository.UserRepository;
+*/
 
-@Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+/*
+ * 	OBS: commented temporarily to test the front
+ */
 
-	@Autowired
+// @Service
+public class UserDetailsServiceImpl { // implements UserDetailsService {
+
+	/*@Autowired
 	private UserRepository usRepository;
 
 	@Override
@@ -38,4 +44,5 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), true, true, true, true,
 				grantedAuthorities);
 	}
+	*/
 }
