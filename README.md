@@ -18,17 +18,17 @@
   
 
 #### Dump Database
-> File: [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
+> [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
 
 #### Application Link
 > [mynager-rest-api.herokuapp.com](mynager-rest-api.herokuapp.com)
 
 #### Endpoints
 - **Item**
-> GET: **/item**
-> POST: **/item**
-> PUT: **/item/id**
-> DELETE: **/item/id**
+> GET: **/item** <br/>
+> POST: **/item** <br/>
+> PUT: **/item/id** <br/>
+> DELETE: **/item/id** <br/>
 
 - **Type**
 > GET: **/type**
@@ -37,9 +37,9 @@
 > GET: **/situation**
 
 - **User**
-> GET: **/user, /user/id**
-> POST: **/user**
-> PUT: **/user/id**
+> GET: **/user, /user/id** <br/>
+> POST: **/user** <br/>
+> PUT: **/user/id** <br/>
 > DELETE: **/user/id**
 
 - **Auth**
