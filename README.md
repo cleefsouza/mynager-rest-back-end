@@ -21,7 +21,7 @@
 > [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
 
 #### Application Link
-> <a href="mynager-rest-api.herokuapp.com">mynager-rest-api.herokuapp.com</a>
+> https://mynager-rest-api.herokuapp.com <br/>
 
 #### Endpoints
 - **Item**
