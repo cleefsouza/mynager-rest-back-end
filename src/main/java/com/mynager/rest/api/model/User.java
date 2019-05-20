@@ -1,5 +1,6 @@
 package com.mynager.rest.api.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,7 +22,9 @@ import org.springframework.data.annotation.CreatedDate;
 @Entity
 @Table(name = "tb_user")
 @NamedQuery(name = "findByEmail", query="SELECT u FROM User u WHERE u.email = ?1")
-public class User {
+public class User implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

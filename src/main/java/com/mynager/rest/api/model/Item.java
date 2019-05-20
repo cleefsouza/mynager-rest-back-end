@@ -1,5 +1,6 @@
 package com.mynager.rest.api.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,7 +26,9 @@ import org.springframework.data.annotation.CreatedDate;
 	@NamedQuery(name = "Item.findBySituation", query = "SELECT i FROM Item i WHERE i.situation.id = ?1")
 })
 
-public class Item {
+public class Item implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
