@@ -1,27 +1,15 @@
 package com.mynager.rest.api.services;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.mynager.rest.api.model.Item;
+import com.mynager.rest.api.model.User;
 
 public interface ItemService {
 
-	// retrieve item by id
-	Item findById(long id);
-
-	// list items by type
-	List<Item> findByType(Long id);
-
-	// list items by situation
-	List<Item> findBySituation(Long id);
-
 	// save item
 	void save(Item item);
-
-	// retrive all items
-	List<Item> findAll();
 
 	// delete item by id
 	void delete(long id);
@@ -31,4 +19,7 @@ public interface ItemService {
 
 	// items per page
 	Page<Item> findPage(Integer page, Integer linePerPage, String direction, String orderBy);
+	
+	// find items by user
+	Page<Item> findByUser(User user, Pageable page);
 }

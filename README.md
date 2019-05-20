@@ -20,22 +20,30 @@
 #### Dump Database
 > File: [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
 
-#### Endpoints REST
+#### Application Link
+> [mynager-rest-api.herokuapp.com](mynager-rest-api.herokuapp.com)
 
-> GET Method
-- List all items: [/items]()
-- Find by id: [/items/?]()
-- Find by type: [/items/type/?]()
-- Find by situation: [/items/situation/?]()
+#### Endpoints
+- **Item**
+> GET: **/item**
+> POST: **/item**
+> PUT: **/item/id**
+> DELETE: **/item/id**
 
-> POST Method
-- Create item: [/items]()
+- **Type**
+> GET: **/type**
 
-> PUT Method
-- Update item: [/items]()
+- **Situation**
+> GET: **/situation**
 
-> DELETE Method
-- Delete item: [/items]()
+- **User**
+> GET: **/user, /user/id**
+> POST: **/user**
+> PUT: **/user/id**
+> DELETE: **/user/id**
+
+- **Auth**
+> POST: **/auth/refresh_token**
 
 #### Class Diagram
 <img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png/"/>

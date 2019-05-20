@@ -15,10 +15,10 @@ import com.mynager.rest.api.model.ErrorDetails;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler({ NullPointerException.class, IllegalArgumentException.class, NotFoundException.class })
-	public ResponseEntity<Object> serverException(RuntimeException ex, WebRequest request) {
+	public ResponseEntity<Object> internalServerException(RuntimeException ex, WebRequest request) {
 		return handleExceptionInternal(
 				ex, ErrorDetails.builder()
-				.addDetails("Ops! Exception detected.")
+				.addDetails("Internal Server Error.")
 				.addError(ex.getMessage())
 				.addStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 				.addHttpMethod(getHttpMethod(request))
@@ -27,6 +27,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 				new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
 	}
 
+	@ExceptionHandler({ AuthorizationException.class })
+	public ResponseEntity<Object> accessDeniedException(AuthorizationException ex, WebRequest request) {
+		return handleExceptionInternal(
+				ex, ErrorDetails.builder()
+				.addDetails("Access Denied.")
+				.addError(ex.getMessage())
+				.addStatus(HttpStatus.FORBIDDEN)
+				.addHttpMethod(getHttpMethod(request))
+				.addPath(getPath(request))
+				.build(),
+				new HttpHeaders(), HttpStatus.FORBIDDEN, request);
+	}
+	
 	private String getPath(WebRequest request) {
 		return ((ServletWebRequest) request).getRequest().getRequestURI();
 	}

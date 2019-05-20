@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,11 +19,6 @@ import org.springframework.data.annotation.CreatedDate;
 
 @Entity
 @Table(name = "tb_item")
-@NamedQueries({
-	@NamedQuery(name = "Item.findByType", query = "SELECT i FROM Item i WHERE i.type.id = ?1"),
-	@NamedQuery(name = "Item.findBySituation", query = "SELECT i FROM Item i WHERE i.situation.id = ?1")
-})
-
 public class Item implements Serializable{
 
 	private static final long serialVersionUID = 1L;

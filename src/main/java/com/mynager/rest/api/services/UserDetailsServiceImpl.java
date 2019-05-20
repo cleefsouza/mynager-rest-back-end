@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mynager.rest.api.config.UserSpringSecurity;
 import com.mynager.rest.api.model.Role;
 import com.mynager.rest.api.model.User;
 import com.mynager.rest.api.repository.UserRepository;
@@ -35,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
 		}
 
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), grantedAuthorities);
+		return new UserSpringSecurity(user.getId(), user.getEmail(), user.getPassword(), grantedAuthorities);
 	}
 
 }

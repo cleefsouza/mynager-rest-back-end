@@ -1,25 +1,31 @@
 package com.mynager.rest.api.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.mynager.rest.api.config.jwt.JWTAuthenticationFilter;
+import com.mynager.rest.api.config.jwt.JWTAuthorizationFilter;
 import com.mynager.rest.api.config.jwt.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -28,23 +34,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] GENERAL_MATCHERS = { "/", "/item", "/item/{id}", "/item/type/{id}",
-			"/item/situation/{id}", "/user", "/user/{id}", "/type", "/situation" };
+	private static final String[] MATCHERS_GET = {"/item", "/user", "/type", "/situation"};
+	
+	private static final String[] MATCHERS_PUT_DELETE = {"/item/{id}", "/user/{id}"};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable();
 
-		http.authorizeRequests().antMatchers(HttpMethod.GET, GENERAL_MATCHERS).permitAll()
-				.antMatchers(HttpMethod.POST, "/item").hasAnyRole("USER", "ADMIN")
-				.antMatchers(HttpMethod.PUT, "/item", "/user").hasAnyRole("USER", "ADMIN")
-				.antMatchers(HttpMethod.DELETE, "/item", "/user").hasAnyRole("USER", "ADMIN")
-				.antMatchers(HttpMethod.POST, "/user").hasRole("ADMIN").anyRequest().authenticated();
+		http.authorizeRequests()
+			.antMatchers(HttpMethod.GET, "/").permitAll()
+			.antMatchers(HttpMethod.GET, MATCHERS_GET).hasAnyRole("USER", "ADMIN")		
+			.antMatchers(HttpMethod.POST, "/auth/refresh_token", "/item", "/user").hasAnyRole("USER", "ADMIN")
+			.antMatchers(HttpMethod.PUT, MATCHERS_PUT_DELETE).hasAnyRole("USER", "ADMIN")
+			.antMatchers(HttpMethod.DELETE, MATCHERS_PUT_DELETE).hasAnyRole("USER", "ADMIN")
+			.anyRequest().authenticated();
 
 		// register authentication filter 
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		// register authorization filter
-		//http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, usDetailsService));
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, usDetailsService));
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
@@ -61,8 +70,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration().applyPermitDefaultValues();
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+		source.registerCorsConfiguration("/**", corsConfiguration);
 		return source;
 	}
 

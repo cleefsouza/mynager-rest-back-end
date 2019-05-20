@@ -1,7 +1,5 @@
 package com.mynager.rest.api.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,39 +25,15 @@ public class ItemController {
 	private ItemService itService;
 
 	/*
-	 * methods
-	 */
-
-	@GetMapping("/{id}")
-	public Item findItemById(@PathVariable("id") long id) {
-		return itService.findById(id);
-	}
-
-	@GetMapping("/type/{id}")
-	public List<Item> getItemsByType(@PathVariable("id") Long id) {
-		return itService.findByType(id);
-	}
-
-	@GetMapping("/situation/{id}")
-	public List<Item> getItemsBySituation(@PathVariable("id") Long id) {
-		return itService.findBySituation(id);
-	}
-
-	@GetMapping("/page")
-	public Page<Item> findPage(@RequestParam(name = "page", defaultValue = "0") Integer page,
-			@RequestParam(name = "linePerPage", defaultValue = "4") Integer linePerPage,
-			@RequestParam(name = "direction", defaultValue = "ASC") String direction,
-			@RequestParam(name = "orderBy", defaultValue = "name") String orderBy) {
-		return itService.findPage(page, linePerPage, direction, orderBy);
-	}
-
-	/*
 	 * crud
 	 */
 
 	@GetMapping()
-	public List<Item> getAllItems() {
-		return itService.findAll();
+	public Page<Item> findPage(@RequestParam(name = "page", defaultValue = "0") Integer page,
+			@RequestParam(name = "linePerPage", defaultValue = "4") Integer linePerPage,
+			@RequestParam(name = "direction", defaultValue = "ASC") String direction,
+			@RequestParam(name = "orderBy", defaultValue = "dateUpdate") String orderBy) {
+		return itService.findPage(page, linePerPage, direction, orderBy);
 	}
 
 	@PostMapping()

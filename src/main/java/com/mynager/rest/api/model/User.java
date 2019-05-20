@@ -56,7 +56,7 @@ public class User implements Serializable{
 
 	// getters e setters
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
