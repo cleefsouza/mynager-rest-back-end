@@ -35,7 +35,7 @@ INSERT INTO tb_user_roles (users, roles) VALUES
 --
 
 INSERT INTO tb_situation (id, name) VALUES
-(1,	'Completed'),
+(1,	'Complete'),
 (2,	'Watching'),
 (3,	'Hiatus'),
 (4,	'Whislist'),
@@ -59,5 +59,5 @@ INSERT INTO tb_type (id, name) VALUES
 --
 
 INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation_id, type_id, user_id) VALUES 
-(1, 18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	2,	1, 1),
-(2, 18,	1,	'2019-05-12',	'Teste Api Rest',	18,	1,	5,	2, 2);
+(1, 18,	1,	'2019-05-12',	'Admin Teste Api Rest',	18,	1,	2,	1, 1),
+(2, 18,	1,	'2019-05-12',	'User Teste Api Rest',	18,	1,	5,	2, 2);
