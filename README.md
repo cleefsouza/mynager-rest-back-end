@@ -44,6 +44,3 @@
 
 - **Auth**
 > POST: **/auth/refresh_token**
-
-#### Class Diagram
-<img src="https://github.com/cleefsouza/mynager-rest-back-end/blob/master/diagrams/class_diagram.png/"/>
