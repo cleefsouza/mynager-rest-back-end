@@ -16,6 +16,12 @@
     - Maven for Java
     - Spring Initializr Java Support
   
+#### Implemented
+- [x] Endpoints
+- [x] Services
+- [x] Connecting to PostgreSQL
+- [x] Spring Security
+- [x] JWT Authentication
 
 #### Dump Database
 > [db_mynager.sql](https://github.com/cleefsouza/mynager-rest-back-end/blob/master/db_dump/db_mynager.sql)
@@ -37,7 +43,7 @@
 > GET: **/situation**
 
 - **User**
-> GET: **/user, /user/id** <br/>
+> GET: **/user, /user/id, /user/email?value=example@gmail.com** <br/>
 > POST: **/user** <br/>
 > PUT: **/user/id** <br/>
 > DELETE: **/user/id**
