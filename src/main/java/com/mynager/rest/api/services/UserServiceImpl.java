@@ -24,10 +24,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findByEmail(String email) {
+		UserSpringSecurity userCont = UserSpringSecurityServiceImpl.authenticated();
+		if (userCont == null || !email.equals(userCont.getUsername())) {
+			throw new AuthorizationException("Access Denied.");
+		}
+		
 		User user = usRepository.findByEmail(email);
 		if (user == null) {
 			throw new NotFoundException("User not found.");
 		}
+		
 		return user;
 	}
 
@@ -42,6 +48,7 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			throw new NotFoundException("User not found.");
 		}
+		
 		return user;
 	}
 

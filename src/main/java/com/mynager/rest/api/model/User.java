@@ -16,12 +16,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
 import org.springframework.data.annotation.CreatedDate;
+
 
 @Entity
 @Table(name = "tb_user")
-@NamedQuery(name = "findByEmail", query="SELECT u FROM User u WHERE u.email = ?1")
+@NamedQuery(name = "findByEmail", query="SELECT u FROM User u WHERE u.email = '?1'")
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;

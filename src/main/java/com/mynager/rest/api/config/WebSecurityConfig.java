@@ -14,7 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -34,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] MATCHERS_GET = {"/item", "/user", "/type", "/situation"};
+	private static final String[] MATCHERS_GET = {"/item", "/user", "/type", "/situation", "/user/email/{value}"};
 	
 	private static final String[] MATCHERS_PUT_DELETE = {"/item/{id}", "/user/{id}"};
 
@@ -54,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
 		// register authorization filter
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, usDetailsService));
-
+		// session stateless
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 

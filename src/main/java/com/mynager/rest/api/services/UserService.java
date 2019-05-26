@@ -19,7 +19,7 @@ public interface UserService {
 
 	// find all user
 	List<User> findAll();
-	
+
 	// update user
 	void update(User user);
 }
