@@ -3,10 +3,6 @@ package com.mynager.rest.api.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.mynager.rest.api.config.UserSpringSecurity;
@@ -42,23 +38,17 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public Page<Item> findPage(Integer page, Integer linePerPage, String direction, String orderBy) {
+	public List<Item> findAll() {
 		UserSpringSecurity userCont = UserSpringSecurityServiceImpl.authenticated();
 		if (userCont == null) {
 			throw new AuthorizationException("Access Denied.");
 		}
-		PageRequest pageRequest = PageRequest.of(page, linePerPage, Sort.Direction.valueOf(direction), orderBy);
 		User user = usRepository.findById(userCont.getId());
-		return itRepository.findByUser(user, pageRequest);
+		return itRepository.findByUser(user);
 	}
 
 	@Override
-	public Page<Item> findByUser(User user, Pageable page) {
-		return itRepository.findByUser(user, page);
-	}
-
-	@Override
-	public List<Item> findAll() {
-		return itRepository.findAll();
+	public List<Item> findByUser(User user) {
+		return itRepository.findByUser(user);
 	}
 }
