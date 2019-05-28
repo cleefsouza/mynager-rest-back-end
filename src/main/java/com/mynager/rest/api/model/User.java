@@ -53,8 +53,19 @@ public class User implements Serializable{
 
 	@ManyToMany
 	private Set<Role> roles;
+	
+	@Column
+	private boolean blocked;
 
 	// getters e setters
+
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
 
 	public long getId() {
 		return id;

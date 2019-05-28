@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] MATCHERS_GET = {"/item", "/user", "/type", "/situation", "/user/email/{value}"};
+	private static final String[] MATCHERS_GET = {"/item", "/item/page", "/user", "/type", "/situation", "/user/email/{value}"};
 	
 	private static final String[] MATCHERS_PUT_DELETE = {"/item/{id}", "/user/{id}"};
 

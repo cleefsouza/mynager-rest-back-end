@@ -53,8 +53,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void save(User user) {
+	public void save(User user) {		
 		user.setId(0L);
+		user.setBlocked(false);
 		User userEquals = usRepository.findByEmail(user.getEmail());
 		if (userEquals != null) {
 			throw new EmailAlreadyExistsException("Email already exists!");

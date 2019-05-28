@@ -1,5 +1,7 @@
 package com.mynager.rest.api.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -53,5 +55,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public Page<Item> findByUser(User user, Pageable page) {
 		return itRepository.findByUser(user, page);
+	}
+
+	@Override
+	public List<Item> findAll() {
+		return itRepository.findAll();
 	}
 }

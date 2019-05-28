@@ -1,5 +1,7 @@
 package com.mynager.rest.api.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,6 +21,9 @@ public interface ItemService {
 
 	// items per page
 	Page<Item> findPage(Integer page, Integer linePerPage, String direction, String orderBy);
+	
+	// find all
+	List<Item> findAll();
 	
 	// find items by user
 	Page<Item> findByUser(User user, Pageable page);
