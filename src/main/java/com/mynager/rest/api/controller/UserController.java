@@ -38,6 +38,12 @@ public class UserController {
 	public User getUserByEmail(@RequestParam(value = "value") String email) {
 		return usService.findByEmail(email);
 	}
+	
+	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PutMapping("/block_user/{id}")
+	public void blockUser(@PathVariable long id) {
+		usService.blockUser(id);
+	}
 
 	/*
 	 * crud

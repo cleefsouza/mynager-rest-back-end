@@ -1,6 +1,10 @@
 package com.mynager.rest.api.services;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.mynager.rest.api.model.User;
 
 public interface UserService {
@@ -22,4 +26,9 @@ public interface UserService {
 
 	// update user
 	void update(User user);
+	
+	// block user
+	@Transactional
+	@Modifying
+	void blockUser(long id);
 }

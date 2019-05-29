@@ -28,12 +28,12 @@ public class UserServiceImpl implements UserService {
 		if (userCont == null || !email.equals(userCont.getUsername())) {
 			throw new AuthorizationException("Access Denied.");
 		}
-		
+
 		User user = usRepository.findByEmail(email);
 		if (user == null) {
 			throw new NotFoundException("User not found.");
 		}
-		
+
 		return user;
 	}
 
@@ -48,12 +48,12 @@ public class UserServiceImpl implements UserService {
 		if (user == null) {
 			throw new NotFoundException("User not found.");
 		}
-		
+
 		return user;
 	}
 
 	@Override
-	public void save(User user) {		
+	public void save(User user) {
 		user.setId(0L);
 		user.setBlocked(false);
 		User userEquals = usRepository.findByEmail(user.getEmail());
@@ -86,5 +86,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAll() {
 		return usRepository.findAll();
+	}
+
+	@Override
+	public void blockUser(long id) {
+		UserSpringSecurity userCont = UserSpringSecurityServiceImpl.authenticated();
+		if (userCont == null) {
+			throw new AuthorizationException("Access Denied.");
+		}
+		User user = usRepository.findById(id);
+		if(user.isBlocked()) {	
+			user.setBlocked(false);
+		} else {
+			user.setBlocked(true);
+		}
+		usRepository.blockUser(user.isBlocked(), user.getId());		
 	}
 }

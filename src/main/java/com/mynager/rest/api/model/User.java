@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,11 +19,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import org.springframework.data.annotation.CreatedDate;
 
-
 @Entity
 @Table(name = "tb_user")
-@NamedQuery(name = "findByEmail", query="SELECT u FROM User u WHERE u.email = '?1'")
-public class User implements Serializable{
+@NamedQueries({
+	@NamedQuery(name = "findByEmail", query = "SELECT u FROM User u WHERE u.email = '?1'"),
+	@NamedQuery(name = "User.blockUser", query = "UPDATE User u SET u.blocked=?1 WHERE u.id = ?2") })
+
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +33,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@NotEmpty	
+	@NotEmpty
 	private String username;
 
 	@NotEmpty
@@ -53,7 +56,7 @@ public class User implements Serializable{
 
 	@ManyToMany
 	private Set<Role> roles;
-	
+
 	@Column
 	private boolean blocked;
 
