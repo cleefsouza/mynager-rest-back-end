@@ -1,4 +1,4 @@
-# Mynager
+# Mynager API
 **API RESTful** with Java and Spring Boot for managing _series_ and _animations_ that i follow.
 
 #### Requirements
