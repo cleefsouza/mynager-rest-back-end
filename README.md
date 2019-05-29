@@ -43,9 +43,9 @@
 > GET: **/situation**
 
 - **User**
-> GET: **/user, /user/id, /user/email?value=example@gmail.com** <br/>
+> GET: **/user, /user/id, /user/email?value=email** <br/>
 > POST: **/user** <br/>
-> PUT: **/user/id** <br/>
+> PUT: **/user/id, /user/block_user/id**<br/>
 > DELETE: **/user/id**
 
 - **Auth**
