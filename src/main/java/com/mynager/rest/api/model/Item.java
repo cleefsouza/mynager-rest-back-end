@@ -33,12 +33,6 @@ public class Item implements Serializable{
 	@Column(name = "current_season")
 	private int currentSeason;
 
-	@Column(name = "number_seasons")
-	private int numberSeasons;
-
-	@Column(name = "number_episodes")
-	private int numberEpisodes;
-
 	@Column(name = "current_episode")
 	private int currentEpisode;
 
@@ -91,22 +85,6 @@ public class Item implements Serializable{
 
 	public void setSeason(int currentSeason) {
 		this.currentSeason = currentSeason;
-	}
-
-	public int getNumberSeasons() {
-		return numberSeasons;
-	}
-
-	public void setNumberSeasons(int numberSeasons) {
-		this.numberSeasons = numberSeasons;
-	}
-
-	public int getNumberEpisodes() {
-		return numberEpisodes;
-	}
-
-	public void setNumberEpisodes(int numberEpisodes) {
-		this.numberEpisodes = numberEpisodes;
 	}
 
 	public int getCurrentEpisode() {
