@@ -33,9 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JWTUtil jwtUtil;
 
-	private static final String[] MATCHERS_GET = {"/item", "/item/page", "/user", "/type", "/situation", "/user/email/{value}"};
+	private static final String[] MATCHERS_GET = {"/item", "/item/page", "/user", "/user/{id}", "/type", "/situation", "/user/email/{value}"};
 	
-	private static final String[] MATCHERS_PUT_DELETE = {"/item/{id}", "/user/{id}"};
+	private static final String[] MATCHERS_PUT_DELETE = {"/user", "/item/{id}", "/user/{id}"};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

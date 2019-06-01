@@ -28,7 +28,6 @@ public class UserController {
 	 * methods
 	 */
 	
-	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/{id}")
 	public User getUserById(@PathVariable long id) {
 		return usService.findById(id);
