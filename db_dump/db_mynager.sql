@@ -58,6 +58,6 @@ INSERT INTO tb_type (id, name) VALUES
 -- Data for Name: tb_item; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO tb_item (id, current_episode, current_season, date_update, name, number_episodes, number_seasons, situation_id, type_id, user_id) VALUES 
-(1, 18,	1,	'2019-05-12',	'Admin Teste Api Rest',	18,	1,	2,	1, 1),
-(2, 18,	1,	'2019-05-12',	'User Teste Api Rest',	18,	1,	5,	2, 2);
+INSERT INTO tb_item (id, current_episode, current_season, date_update, name, situation_id, type_id, user_id) VALUES 
+(1, 18,	1,	'2019-05-12',	'Admin Teste Api Rest',	2,	1, 1),
+(2, 18,	1,	'2019-05-12',	'User Teste Api Rest',	5,	2, 2);
