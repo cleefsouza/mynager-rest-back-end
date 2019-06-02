@@ -31,7 +31,7 @@
 
 #### Endpoints
 - **Item**
-> GET: **/item** <br/>
+> GET: **/item, /item/id** <br/>
 > POST: **/item** <br/>
 > PUT: **/item/id** <br/>
 > DELETE: **/item/id** <br/>
