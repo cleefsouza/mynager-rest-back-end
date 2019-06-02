@@ -27,7 +27,12 @@ public class ItemController {
 	/*
 	 * crud
 	 */
-
+	
+	@GetMapping("/{id}")
+	public Item getItemById(@PathVariable long id) {
+		return itService.findById(id);
+	}
+	
 	@GetMapping()
 	public List<Item> findAll(){
 		return itService.findAll();

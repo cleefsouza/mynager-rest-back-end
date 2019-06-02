@@ -21,4 +21,7 @@ public interface ItemService {
 
 	// find items by user
 	List<Item> findByUser(User user);
+	
+	// find by id
+	Item findById(long id);
 }

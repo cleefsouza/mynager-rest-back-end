@@ -12,5 +12,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	// find items by user
 	@Transactional(readOnly = true)
 	List<Item> findByUser(User user);
+	
+	// find by id
+	Item findById(long id);
 
 }

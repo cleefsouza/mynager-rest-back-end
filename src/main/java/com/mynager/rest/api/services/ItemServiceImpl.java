@@ -17,7 +17,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private ItemRepository itRepository;
-	
+
 	@Autowired
 	private UserRepository usRepository;
 
@@ -50,5 +50,10 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<Item> findByUser(User user) {
 		return itRepository.findByUser(user);
+	}
+
+	@Override
+	public Item findById(long id) {
+		return itRepository.findById(id);
 	}
 }
